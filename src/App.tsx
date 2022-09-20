@@ -1,14 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
 import { Todo } from "./Todo";
+import { Text } from "./Text";
+import { UserProfile } from "./UserProfile";
+import { TodoType } from "./types/todo";
 import "./styles.css";
 
-type TodoType = {
-  // この型が入った配列群　=>　<Array<TodoType>>
-  userId: number;
-  id: number;
-  title: string;
-  completed: boolean;
+const user = {
+  name: "ggg",
+  hobbies: ["game", "movie"]
 };
 
 export default function App() {
@@ -28,12 +28,15 @@ export default function App() {
       {todos.map((todo) => (
         //todo=res.data
         <Todo
+          key={todo.id}
           title={todo.title}
           userId={todo.userId}
           // <Todo>のtypeでcompleted?と設定しているので、記述無しでもエラーが起きない
           completed={todo.completed}
         />
       ))}
+      <Text color="red" fontSize="18px" />
+      <UserProfile user={user} />
     </div>
   );
 }
